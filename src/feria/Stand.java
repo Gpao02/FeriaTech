@@ -9,6 +9,7 @@ public class Stand {
     private String tamaño;
     private Empresa empresaAsignada; // Asociación con la clase Empresa
     private List<Comentario> comentarios;  // Lista de comentarios
+     private boolean ocupado;
 
     // Constructor
     public Stand(int numero, String ubicacion, String tamaño) {
@@ -17,6 +18,7 @@ public class Stand {
         this.tamaño = tamaño;
         this.empresaAsignada = null; // Por defecto, el stand está disponible
         this.comentarios = new ArrayList<>();
+        this.ocupado = false;
     }
 
     // Getters y Setters
@@ -50,10 +52,17 @@ public class Stand {
 
     public void asignarEmpresa(Empresa empresa) {
         this.empresaAsignada = empresa;
+        this.ocupado = true;  // Marcar como ocupado
     }
 
     public void liberarStand() {
         this.empresaAsignada = null;
+        this.ocupado = false; // Marcar como disponible
+    }
+
+    // Método para verificar si el stand está ocupado
+    public boolean isOcupado() {
+     return ocupado;
     }
 
     // Método para agregar comentarios

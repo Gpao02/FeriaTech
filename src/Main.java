@@ -1,49 +1,110 @@
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+// Importamos las clases necesarias si están en un paquete diferente
 import feria.Empresa;
 import feria.Stand;
 import feria.Visitante;
 import feria.Reporte;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Listas para almacenar empresas, stands y visitantes
+        Scanner scanner = new Scanner(System.in);
         List<Empresa> empresas = new ArrayList<>();
         List<Stand> stands = new ArrayList<>();
         List<Visitante> visitantes = new ArrayList<>();
 
-        // Crear empresas y agregarlas a la lista
-        Empresa empresa1 = new Empresa("Tech Solutions", "Tecnología", "contacto@tech.com");
-        Empresa empresa2 = new Empresa("Salud Total", "Salud", "info@saludtotal.com");
-        empresas.add(empresa1);
-        empresas.add(empresa2);
+        // Registrar empresas
+        System.out.print("Ingrese el número de empresas a registrar: ");
+        int numEmpresas = scanner.nextInt();
+        scanner.nextLine(); // Limpiar buffer
 
-        // Crear stands y agregarlos a la lista
-        Stand stand1 = new Stand(1, "Pabellón A, Stand 10", "Grande");
-        Stand stand2 = new Stand(2, "Pabellón B, Stand 5", "Mediano");
-        stands.add(stand1);
-        stands.add(stand2);
+        for (int i = 0; i < numEmpresas; i++) {
+            System.out.println("\nRegistro de empresa #" + (i + 1));
+            System.out.print("Nombre: ");
+            String nombre = scanner.nextLine();
+            System.out.print("Sector (Ej: Tecnología, Salud, Educación): ");
+            String sector = scanner.nextLine();
+            System.out.print("Correo de contacto: ");
+            String correo = scanner.nextLine();
+            empresas.add(new Empresa(nombre, sector, correo));
+        }
 
-        // Asignar empresas a stands
-        stand1.asignarEmpresa(empresa1);
-        stand2.asignarEmpresa(empresa2);
+        // Registrar stands
+        System.out.print("\nIngrese el número de stands a registrar: ");
+        int numStands = scanner.nextInt();
+        scanner.nextLine(); // Limpiar buffer
 
-        // Crear visitantes y agregarlos a la lista
-        Visitante visitante1 = new Visitante("Carlos Pérez", "12345678", "carlos@email.com");
-        Visitante visitante2 = new Visitante("Ana Gómez", "87654321", "ana@email.com");
-        visitantes.add(visitante1);
-        visitantes.add(visitante2);
+        for (int i = 0; i < numStands; i++) {
+            System.out.println("\nRegistro de stand #" + (i + 1));
+            System.out.print("Número del stand: ");
+            int numero = scanner.nextInt();
+            scanner.nextLine();
+            System.out.print("Ubicación (Ej: Pabellón A, Stand 10): ");
+            String ubicacion = scanner.nextLine();
+            System.out.print("Tamaño (Pequeño, Mediano, Grande): ");
+            String tamaño = scanner.nextLine();
+            stands.add(new Stand(numero, ubicacion, tamaño));
+        }
 
-        // Visitantes dejan comentarios
-        stand1.agregarComentario(visitante1, "Muy buena atención y productos innovadores.", 5);
-        stand1.agregarComentario(visitante2, "El servicio podría mejorar.", 3);
-        stand2.agregarComentario(visitante1, "Información clara y detallada sobre productos de salud.", 4);
+        // Asignar stands a empresas
+        System.out.println("\nAsignación de stands a empresas:");
+        for (Stand stand : stands) {
+            System.out.println("Stand #" + stand.getNumero() + " en " + stand.getUbicacion());
+            System.out.println("Seleccione la empresa asignada (ingrese el número):");
+            for (int i = 0; i < empresas.size(); i++) {
+                System.out.println((i + 1) + ". " + empresas.get(i).getNombre());
+            }
+            int opcionEmpresa = scanner.nextInt();
+            scanner.nextLine();
+            stand.asignarEmpresa(empresas.get(opcionEmpresa - 1));
+        }
 
-        // Mostrar reportes
-        System.out.println("\n***** GENERANDO REPORTES *****\n");
+        // Registrar visitantes
+        System.out.print("\nIngrese el número de visitantes a registrar: ");
+        int numVisitantes = scanner.nextInt();
+        scanner.nextLine(); // Limpiar buffer
+
+        for (int i = 0; i < numVisitantes; i++) {
+            System.out.println("\nRegistro de visitante #" + (i + 1));
+            System.out.print("Nombre: ");
+            String nombre = scanner.nextLine();
+            System.out.print("Número de identificación: ");
+            String id = scanner.nextLine();
+            System.out.print("Correo electrónico: ");
+            String correo = scanner.nextLine();
+            visitantes.add(new Visitante(nombre, id, correo));
+        }
+
+        // Visitantes dejan comentarios en los stands
+        System.out.println("\nVisitantes dejando comentarios:");
+        for (Visitante visitante : visitantes) {
+            System.out.println("Visitante: " + visitante.getNombre());
+            System.out.println("Seleccione un stand para visitar (ingrese el número):");
+            for (int i = 0; i < stands.size(); i++) {
+                System.out.println((i + 1) + ". Stand #" + stands.get(i).getNumero() + " - " + stands.get(i).getUbicacion());
+            }
+            int opcionStand = scanner.nextInt();
+            scanner.nextLine();
+            Stand standSeleccionado = stands.get(opcionStand - 1);
+
+            System.out.print("Deje un comentario sobre el stand: ");
+            String comentario = scanner.nextLine();
+            System.out.print("Calificación (1 a 5 estrellas): ");
+            int calificacion = scanner.nextInt();
+            scanner.nextLine();
+
+            standSeleccionado.agregarComentario(visitante, comentario, calificacion);
+        }
+
+        // Generar reportes dinámicamente
+        System.out.println("\n***** GENERANDO REPORTES *****");
         Reporte.generarReporteEmpresas(empresas, stands);
         Reporte.generarReporteVisitantes(visitantes, stands);
         Reporte.generarReporteCalificaciones(stands);
+
+        scanner.close();
     }
 }
-

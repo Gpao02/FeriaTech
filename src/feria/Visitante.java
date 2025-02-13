@@ -37,6 +37,11 @@ public class Visitante {
         this.correo = correo;
     }
 
+    public void editarVisitante(String nuevoNombre, String nuevoEmail) {
+        this.nombre = nuevoNombre;
+        this.email = nuevoEmail;
+    }
+
     // Método para mostrar información del visitante
     public void mostrarInfo() {
         System.out.println("Visitante: " + nombre);

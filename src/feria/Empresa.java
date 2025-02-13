@@ -37,6 +37,12 @@ public class Empresa {
         this.correo = correo;
     }
 
+     public void editarEmpresa(String nuevoNombre, String nuevoSector, String nuevoEmail) {
+        this.nombre = nuevoNombre;
+        this.sector = nuevoSector;
+        this.email = nuevoEmail;
+    }
+
     // Método para mostrar la información de la empresa
     public void mostrarInfo() {
         System.out.println("Empresa: " + nombre);
