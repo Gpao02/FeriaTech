@@ -1,12 +1,14 @@
-public class Visitante {
+package feria;
+
+public class Empresa {
     private String nombre;
-    private String identificacion;
+    private String sector;
     private String correo;
 
     // Constructor
-    public Visitante(String nombre, String identificacion, String correo) {
+    public Empresa(String nombre, String sector, String correo) {
         this.nombre = nombre;
-        this.identificacion = identificacion;
+        this.sector = sector;
         this.correo = correo;
     }
 
@@ -19,12 +21,12 @@ public class Visitante {
         this.nombre = nombre;
     }
 
-    public String getIdentificacion() {
-        return identificacion;
+    public String getSector() {
+        return sector;
     }
 
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
+    public void setSector(String sector) {
+        this.sector = sector;
     }
 
     public String getCorreo() {
@@ -35,11 +37,10 @@ public class Visitante {
         this.correo = correo;
     }
 
-    // Método para mostrar información del visitante
+    // Método para mostrar la información de la empresa
     public void mostrarInfo() {
-        System.out.println("Visitante: " + nombre);
-        System.out.println("ID: " + identificacion);
+        System.out.println("Empresa: " + nombre);
+        System.out.println("Sector: " + sector);
         System.out.println("Correo: " + correo);
         System.out.println("---------------------------");
     }
-}
