@@ -72,6 +72,25 @@ public class Stand {
                 c.mostrarComentario();
             }
         }
+
+
+        // Método para calcular la calificación promedio de un stand
+    public double calcularCalificacionPromedio() {
+        if (comentarios.isEmpty()) {
+            return 0;
+        }
+        int suma = 0;
+        for (Comentario c : comentarios) {
+            suma += c.getCalificacion();
+        }
+        return (double) suma / comentarios.size();
+    }
+
+    // Método para obtener la lista de comentarios (necesario para el reporte de visitantes)
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
     
      // Método para mostrar información del stand
     public void mostrarInfo() {
