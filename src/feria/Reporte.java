@@ -35,7 +35,7 @@ public class Reporte {
 
         // Recorremos la lista de visitantes para mostrar su nombre e ID.
         for (Visitante visitante : visitantes) {
-            System.out.println("Visitante: " + visitante.getNombre() + " | ID: " + visitante.getId());
+            System.out.println("Visitante: " + visitante.getNombre() + " | ID: " + visitante.getIdentificacion());
             boolean haVisitado = false;
 
             // Recorremos los stands y verificamos si el visitante ha dejado comentarios en algún stand.

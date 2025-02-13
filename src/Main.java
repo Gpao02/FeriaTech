@@ -2,56 +2,48 @@ import feria.Empresa;
 import feria.Stand;
 import feria.Visitante;
 import feria.Reporte;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Crear empresas
+        // Listas para almacenar empresas, stands y visitantes
+        List<Empresa> empresas = new ArrayList<>();
+        List<Stand> stands = new ArrayList<>();
+        List<Visitante> visitantes = new ArrayList<>();
+
+        // Crear empresas y agregarlas a la lista
         Empresa empresa1 = new Empresa("Tech Solutions", "Tecnología", "contacto@tech.com");
         Empresa empresa2 = new Empresa("Salud Total", "Salud", "info@saludtotal.com");
+        empresas.add(empresa1);
+        empresas.add(empresa2);
 
-        // Mostrar información
-        empresa1.mostrarInfo();
-        empresa2.mostrarInfo();
-
-        // Crear stands
+        // Crear stands y agregarlos a la lista
         Stand stand1 = new Stand(1, "Pabellón A, Stand 10", "Grande");
         Stand stand2 = new Stand(2, "Pabellón B, Stand 5", "Mediano");
+        stands.add(stand1);
+        stands.add(stand2);
 
         // Asignar empresas a stands
         stand1.asignarEmpresa(empresa1);
         stand2.asignarEmpresa(empresa2);
 
-        // Mostrar información
-        stand1.mostrarInfo();
-        stand2.mostrarInfo();
-
-        // Liberar un stand
-        System.out.println("Liberando Stand 1...");
-        stand1.liberarStand();
-        stand1.mostrarInfo();
-
-         // Crear visitantes
+        // Crear visitantes y agregarlos a la lista
         Visitante visitante1 = new Visitante("Carlos Pérez", "12345678", "carlos@email.com");
         Visitante visitante2 = new Visitante("Ana Gómez", "87654321", "ana@email.com");
+        visitantes.add(visitante1);
+        visitantes.add(visitante2);
 
-        // Mostrar información de los visitantes
-        visitante1.mostrarInfo();
-        visitante2.mostrarInfo();
-
-         // Visitantes dejan comentarios
+        // Visitantes dejan comentarios
         stand1.agregarComentario(visitante1, "Muy buena atención y productos innovadores.", 5);
         stand1.agregarComentario(visitante2, "El servicio podría mejorar.", 3);
-
         stand2.agregarComentario(visitante1, "Información clara y detallada sobre productos de salud.", 4);
 
-        // Mostrar información de los stands
-        stand1.mostrarInfo();
-        System.out.println("Comentarios en el Stand 1:");
-        stand1.mostrarComentarios();
-
-        stand2.mostrarInfo();
-        System.out.println("Comentarios en el Stand 2:");
-        stand2.mostrarComentarios();
+        // Mostrar reportes
+        System.out.println("\n***** GENERANDO REPORTES *****\n");
+        Reporte.generarReporteEmpresas(empresas, stands);
+        Reporte.generarReporteVisitantes(visitantes, stands);
+        Reporte.generarReporteCalificaciones(stands);
     }
 }
+

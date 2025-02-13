@@ -44,3 +44,5 @@ public class Empresa {
         System.out.println("Correo: " + correo);
         System.out.println("---------------------------");
     }
+
+}

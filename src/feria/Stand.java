@@ -3,14 +3,12 @@ package feria;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Stand {
     private int numero;
     private String ubicacion;
     private String tamaño;
     private Empresa empresaAsignada; // Asociación con la clase Empresa
     private List<Comentario> comentarios;  // Lista de comentarios
-
 
     // Constructor
     public Stand(int numero, String ubicacion, String tamaño) {
@@ -19,10 +17,9 @@ public class Stand {
         this.tamaño = tamaño;
         this.empresaAsignada = null; // Por defecto, el stand está disponible
         this.comentarios = new ArrayList<>();
-
     }
 
-     // Getters y Setters
+    // Getters y Setters
     public int getNumero() {
         return numero;
     }
@@ -59,12 +56,13 @@ public class Stand {
         this.empresaAsignada = null;
     }
 
-     // Método para agregar comentarios
+    // Método para agregar comentarios
     public void agregarComentario(Visitante visitante, String comentario, int calificacion) {
         Comentario nuevoComentario = new Comentario(visitante, comentario, calificacion);
         comentarios.add(nuevoComentario);
     }
-      public void mostrarComentarios() {
+
+    public void mostrarComentarios() {
         if (comentarios.isEmpty()) {
             System.out.println("No hay comentarios aún.");
         } else {
@@ -72,9 +70,9 @@ public class Stand {
                 c.mostrarComentario();
             }
         }
+    }
 
-
-        // Método para calcular la calificación promedio de un stand
+    // Método para calcular la calificación promedio de un stand
     public double calcularCalificacionPromedio() {
         if (comentarios.isEmpty()) {
             return 0;
@@ -91,8 +89,7 @@ public class Stand {
         return comentarios;
     }
 
-    
-     // Método para mostrar información del stand
+    // Método para mostrar información del stand
     public void mostrarInfo() {
         System.out.println("Stand #" + numero);
         System.out.println("Ubicación: " + ubicacion);
