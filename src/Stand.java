@@ -62,7 +62,15 @@ public class Stand {
         Comentario nuevoComentario = new Comentario(visitante, comentario, calificacion);
         comentarios.add(nuevoComentario);
     }
-
+      public void mostrarComentarios() {
+        if (comentarios.isEmpty()) {
+            System.out.println("No hay comentarios aún.");
+        } else {
+            for (Comentario c : comentarios) {
+                c.mostrarComentario();
+            }
+        }
+    
      // Método para mostrar información del stand
     public void mostrarInfo() {
         System.out.println("Stand #" + numero);

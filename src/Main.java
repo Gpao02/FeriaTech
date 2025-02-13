@@ -32,5 +32,20 @@ public class Main {
         // Mostrar información de los visitantes
         visitante1.mostrarInfo();
         visitante2.mostrarInfo();
+
+         // Visitantes dejan comentarios
+        stand1.agregarComentario(visitante1, "Muy buena atención y productos innovadores.", 5);
+        stand1.agregarComentario(visitante2, "El servicio podría mejorar.", 3);
+
+        stand2.agregarComentario(visitante1, "Información clara y detallada sobre productos de salud.", 4);
+
+        // Mostrar información de los stands
+        stand1.mostrarInfo();
+        System.out.println("Comentarios en el Stand 1:");
+        stand1.mostrarComentarios();
+
+        stand2.mostrarInfo();
+        System.out.println("Comentarios en el Stand 2:");
+        stand2.mostrarComentarios();
     }
 }
