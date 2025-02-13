@@ -34,3 +34,11 @@ public class Empresa {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    // Método para mostrar la información de la empresa
+    public void mostrarInfo() {
+        System.out.println("Empresa: " + nombre);
+        System.out.println("Sector: " + sector);
+        System.out.println("Correo: " + correo);
+        System.out.println("---------------------------");
+    }
