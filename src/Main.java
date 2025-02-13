@@ -24,5 +24,13 @@ public class Main {
         System.out.println("Liberando Stand 1...");
         stand1.liberarStand();
         stand1.mostrarInfo();
+
+         // Crear visitantes
+        Visitante visitante1 = new Visitante("Carlos Pérez", "12345678", "carlos@email.com");
+        Visitante visitante2 = new Visitante("Ana Gómez", "87654321", "ana@email.com");
+
+        // Mostrar información de los visitantes
+        visitante1.mostrarInfo();
+        visitante2.mostrarInfo();
     }
 }
